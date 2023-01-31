@@ -7,15 +7,15 @@ public class Car {
     String country;
 
     public Car(String brand, String model, double engineVolume, String color, int year, String country) {
-        if(model == ""||model =="null"){
+        if(model == null||model.isEmpty() ){
             this.model = "default";
         } else {
         this.model = model;}
-        if(brand == ""||brand =="null"){
+        if(brand==null ||brand.isEmpty()){
             this.brand = "default";
         } else{
         this.brand = brand;}
-        if(country == ""||country =="null"){
+        if(country == null||country.isEmpty()){
             this.country = "default";
         } else{
             this.country = country;}
@@ -23,7 +23,7 @@ public class Car {
             this.engineVolume = 1.5;
         } else{
             this.engineVolume = engineVolume;}
-        if(color == ""||color =="null"){
+        if(color == null||color.isEmpty()){
             this.color = "белый";
         } else{
             this.color = color;}
