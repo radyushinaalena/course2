@@ -1,50 +1,24 @@
 package transport;
 
-public class Car {
-    private final String brand;
-    private final String model;
+public class Car extends Transport {
     private double engineVolume;
-    private String color;
-    private final int year;
-    private final String country;
     private String transmission;
     private final String bodyType;
     private String registrationNumber;
     private final int numberOfSeats;
     private boolean winterTires;
+    private Key key;
 
     public Car(String brand, String model, double engineVolume, String color, int year, String country, String transmission,
-               String bodyType, String registrationNumber, int numberOfSeats, boolean winterTires) {
-        if (model == null || model.isEmpty()) {
-            model = "default";
-        }
-        this.model = model;
+               String bodyType, String registrationNumber, int numberOfSeats, boolean winterTires,
+               int maxSpeed, Key key) {
+        super(brand, model, year, country, color, maxSpeed);
 
-        if (brand == null || brand.isEmpty()) {
-            brand = "default";
-        }
-        this.brand = brand;
-
-        if (country == null || country.isEmpty()) {
-            country = "default";
-        }
-        this.country = country;
 
         if (engineVolume <= 0) {
             engineVolume = 1.5;
         }
         this.engineVolume = engineVolume;
-
-        if (color == null || color.isEmpty()) {
-            color = "белый";
-        }
-        this.color = color;
-
-        if (year <= 0) {
-            year = 2000;
-        }
-        this.year = year;
-
 
         if (transmission == null || transmission.isEmpty()) {
             transmission = "default";
@@ -65,9 +39,11 @@ public class Car {
             numberOfSeats = 5;
         }
         this.numberOfSeats = numberOfSeats;
+        this.winterTires = winterTires;
+        setKey(key);
     }
 
-    public class Key {
+    public static class Key {
         private final boolean remoteEngineStart;
         private final boolean keylessAccess;
 
@@ -76,31 +52,20 @@ public class Car {
             this.keylessAccess = keylessAccess;
         }
 
-        @Override
-        public String toString() {
-            return "Марка: " + brand + ", модель: " + model + ", объем двигателя: " + engineVolume +
-                    " литров, цвет: " + color + ", год производства: " + year + ", страна сборки: " + country + ", коробка передач: " +
-                    transmission + ", тип кузова: " + bodyType + ", регистрационный номер: " + registrationNumber + ", количество мест: " +
-                    numberOfSeats + ", зимняя резина: " + winterTires + ", удаленный запуск двигателя: " + remoteEngineStart +
-                    ", бесключевой доступ: " + keylessAccess;
+        public boolean isRemoteEngineStart() {
+            return remoteEngineStart;
         }
 
-    }
+        public boolean isKeylessAccess() {
+            return keylessAccess;
+        }
 
-    public String getBrand() {
-        return brand;
-    }
+        @Override
+        public String toString() {
+            return (remoteEngineStart ? ", удаленный запуск двигателя" : ", без удаленного запуска двигателя")
+                    + (keylessAccess ? ", бесключевой доступ" : ", без бесключевого доступа");
+        }
 
-    public String getModel() {
-        return model;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getCountry() {
-        return country;
     }
 
     public String getBodyType() {
@@ -117,14 +82,6 @@ public class Car {
 
     public void setEngineVolume(double engineVolume) {
         this.engineVolume = engineVolume;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
     public String getTransmission() {
@@ -151,6 +108,16 @@ public class Car {
         this.winterTires = winterTires;
     }
 
+    public Key getKey() {
+        return key;
+    }
+
+    public void setKey(Key key) {
+        if (key == null) {
+            key = new Key(false, false);
+        }
+        this.key = key;
+    }
 
     public boolean changeTires(int month) {
         switch (month) {
@@ -178,10 +145,10 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Марка: " + brand + ", модель: " + model + ", объем двигателя: " + engineVolume +
-                " литров, цвет: " + color + ", год производства: " + year + ", страна сборки: " + country + ", коробка передач: " +
-                transmission + ", тип кузова: " + bodyType + ", регистрационный номер: " + registrationNumber + ", количество мест: " +
-                numberOfSeats + ", зимняя резина: " + winterTires;
+        return super.toString() + ", объем двигателя: " + engineVolume +
+                " литров, коробка передач: " + transmission + ", тип кузова: " + bodyType + ", регистрационный номер: " +
+                registrationNumber + ", количество мест: " +
+                numberOfSeats + (winterTires ? ", зимняя резина" : ", летняя резина") + key;
     }
 
 }
