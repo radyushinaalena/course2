@@ -1,12 +1,10 @@
 package transport;
 
-public class Transport {
+public abstract class Transport<T extends Driver> implements Competing {
     private final String brand;
     private final String model;
-    private final int year;
-    private final String country;
-    private String color;
-    private int maxSpeed;
+    private final double engineVolume;
+    private T driver;
 
     public String getBrand() {
         return brand;
@@ -16,38 +14,19 @@ public class Transport {
         return model;
     }
 
-    public int getYear() {
-        return year;
+    public double getEngineVolume() {
+        return engineVolume;
     }
 
-    public String getCountry() {
-        return country;
+    public T getDriver() {
+        return driver;
     }
 
-    public String getColor() {
-        return color;
+    public void setDriver(T driver) {
+        this.driver = driver;
     }
 
-    public void setColor(String color) {
-
-        if (color == null || color.isEmpty()) {
-            color = "белый";
-        }
-        this.color = color;
-    }
-
-    public int getMaxSpeed() {
-        return maxSpeed;
-    }
-
-    public void setMaxSpeed(int maxSpeed) {
-        if (maxSpeed < 0) {
-            maxSpeed = 120;
-        }
-        this.maxSpeed = maxSpeed;
-    }
-
-    public Transport(String brand, String model, int year, String country, String color, int maxSpeed) {
+    public Transport(String brand, String model, double engineVolume, T driver) {
         if (model == null || model.isEmpty()) {
             model = "default";
         }
@@ -58,23 +37,20 @@ public class Transport {
         }
         this.brand = brand;
 
-        if (country == null || country.isEmpty()) {
-            country = "default";
+        if (engineVolume <= 0) {
+            engineVolume = 2.0;
         }
-        this.country = country;
-        if (year <= 0) {
-            year = 2000;
-        }
-        this.year = year;
-        setColor(color);
-        setMaxSpeed(maxSpeed);
-
+        this.engineVolume = engineVolume;
+        setDriver(driver);
     }
+
+    public abstract void start();
+
+    public abstract void stop();
 
     @Override
     public String toString() {
-        return "Марка: " + getBrand() + ", модель: " + getModel() + ", цвет: " +
-                getColor() + ", год производства: " + getYear() + ", страна сборки: " + getCountry() +
-                ", максимальная скорость передвижения: " + getMaxSpeed() + " км/ч";
+        return "Марка: " + getBrand() + ", модель: " + getModel() + ", объем двигателя: " +
+                getEngineVolume() + " л";
     }
 }
