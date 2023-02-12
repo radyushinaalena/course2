@@ -1,26 +1,30 @@
-import transport.Bus;
-import transport.Car;
+import transport.*;
 
 public class Main {
     public static void main(String[] args) {
-        Car car1 = new Car("Lada", "Granta", 1.7, "желтый", 2015, "Россия", "АКП", "седан", "А777АА999", 5, true, 200, new Car.Key(false, false));
-        Car car2 = new Car("Audi", "A8 50 L TDI quattro", 3.0, "черный", 2020, "Германия", "АКП", "седан", "К555КК62", 5, true, 200, new Car.Key(true, true));
-        Car car3 = new Car("BMW", "Z8", 3.0, "черный", 2021, "Германия", "МКП", "родстер", "Р111РР777", 2, false, 230, new Car.Key(true, false));
-        Car car4 = new Car("Kia", "Sportage 4-го поколения", 2.4, "красный", 2018, "Южная Корея", "МКП", "универсал", "Т444ТТ18", 5, true, 210, new Car.Key(false, true));
-        Car car5 = new Car("", "", 0, "", 0, "", "", "", "", 0, false, -1, new Car.Key(false, false));
+        CategoryB driver1 = new CategoryB("ААА", true, 5);
+        CategoryC driver2 = new CategoryC("БББ", true, 12);
+        CategoryD driver3 = new CategoryD("ВВВ", false, 10);
+        Transport<?>[] transports = {
+                new PassengerCar("Lada", "Granta", 1.7, driver1),
+                new PassengerCar("Audi", "A8 50 L TDI quattro", 3.0, driver1),
+                new PassengerCar("BMW", "Z8", 3.0, driver1),
+                new PassengerCar("Kia", "Sportage 4-го поколения", 2.4, driver1),
 
-        System.out.println(car1);
-        System.out.println(car2);
-        System.out.println(car3);
-        System.out.println(car4);
-        System.out.println(car5);
+                new Truck("Белаз", "75710", 130, driver2),
+                new Truck("Камаз", "54901", 11, driver2),
+                new Truck("Газель", "NN", 3.4, driver2),
+                new Truck("Валдай", "Next", 2.8, driver2),
 
-        Bus bus1 = new Bus("Газель", "NN", 2012, "Россия", "черный", 100);
-        Bus bus2 = new Bus("Лиаз", "4292", 2020, "Россия", "синий", 85);
-        Bus bus3 = new Bus("Hyundai", "H350", 2022, "Южная Корея", "белый", 110);
+                new Bus("Лаз", "695", 6.0, driver3),
+                new Bus("Лиаз", "4292", 4.5, driver3),
+                new Bus("Hyundai", "H350", 3.2, driver3),
+                new Bus("ПАЗ", "3206", 4.6, driver3)
+        };
+        for (Transport<?> i : transports) {
+            // System.out.println(i);
+            System.out.println("водитель " + i.getDriver().getFullName() + " управляет автомобилем " + i.getBrand() + " и будет участвовать в заезде");
+        }
 
-        System.out.println(bus1);
-        System.out.println(bus2);
-        System.out.println(bus3);
     }
 }
