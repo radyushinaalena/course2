@@ -1,10 +1,14 @@
 package transport;
 
 public class Truck extends Transport<CategoryC> {
-   Capacity capacity;
+   private Capacity capacity;
     public Truck(String brand, String model, double engineVolume, CategoryC driver, Capacity capacity) {
         super(brand, model, engineVolume, driver);
         this.capacity = capacity;
+    }
+
+    public Capacity getCapacity() {
+        return capacity;
     }
 
     public enum Capacity {
@@ -72,11 +76,15 @@ public class Truck extends Transport<CategoryC> {
         System.out.println("Максимальная скорость грузового автомобиля " + getBrand());
     }
     @Override
-    public void getType(){
+    public void conclusionType(){
         System.out.println(Type.valueOf("TRUCK"));
     }
     @Override
     public void printType(){
         System.out.println(capacity == null ? "Данных по транспортному средству недостаточно" : capacity);
+    }
+    @Override
+    public void passDiagnostics(){
+        System.out.println("Диагностика грузового автомобиля");
     }
 }

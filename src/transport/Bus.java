@@ -1,7 +1,7 @@
 package transport;
 
 public class Bus extends Transport<CategoryD> {
-    CapacitySeats capacitySeats;
+    private CapacitySeats capacitySeats;
 
     public Bus(String brand, String model, double engineVolume, CategoryD driver, CapacitySeats capacitySeats) {
         super(brand, model, engineVolume, driver);
@@ -44,7 +44,9 @@ public class Bus extends Transport<CategoryD> {
                     (upperBound == null ? "" : (" до " + upperBound));
         }
     }
-
+    public CapacitySeats getCapacitySeats() {
+        return capacitySeats;
+    }
     @Override
     public String toString() {
         return "Марка: " + getBrand() + ", модель: " + getModel() + ", объем двигателя: " +
@@ -77,7 +79,7 @@ public class Bus extends Transport<CategoryD> {
     }
 
     @Override
-    public void getType() {
+    public void conclusionType() {
         System.out.println(Type.valueOf("BUS"));
     }
 
@@ -85,4 +87,11 @@ public class Bus extends Transport<CategoryD> {
     public void printType() {
         System.out.println(capacitySeats == null ? "Данных по транспортному средству недостаточно" : capacitySeats);
     }
+    @Override
+    public void passDiagnostics() throws TransportTypeException {
+        throw new TransportTypeException("Автобус диагностику проходить не должен" );
+
+    }
+
+
 }
