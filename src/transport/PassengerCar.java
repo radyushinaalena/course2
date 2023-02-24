@@ -1,13 +1,19 @@
 package transport;
 
 public class PassengerCar extends Transport<CategoryB> {
-    Body body;
+    private Body body;
+
 
     public PassengerCar(String brand, String model, double engineVolume, CategoryB driver, Body body) {
         super(brand, model, engineVolume, driver);
         this.body = body;
     }
-     public enum Body {
+
+    public Body getBody() {
+        return body;
+    }
+
+    public enum Body {
         SEDAN("седан"),
         HATCHBACK("хетчбэк"),
         COUPE("купе"),
@@ -32,16 +38,18 @@ public class PassengerCar extends Transport<CategoryB> {
             this.bodyType = bodyType;
         }
 
-         @Override
-         public String toString() {
-             return " Тип кузова: " + getBodyType();
-         }
-     }
+        @Override
+        public String toString() {
+            return " Тип кузова: " + getBodyType();
+        }
+    }
+
     @Override
     public String toString() {
         return "Марка: " + getBrand() + ", модель: " + getModel() + ", объем двигателя: " +
-                getEngineVolume() + " л" + " ,"+ body;
+                getEngineVolume() + " л" + " ," + body;
     }
+
     @Override
     public void start() {
         System.out.println("Автомобиль " + getBrand() + " начал движение");
@@ -66,12 +74,20 @@ public class PassengerCar extends Transport<CategoryB> {
     public void maxSpeed() {
         System.out.println("Максимальная скорость автомобиля " + getBrand());
     }
+
     @Override
-    public void getType(){
+    public void conclusionType() {
         System.out.println(Type.valueOf("CAR"));
     }
+
     @Override
-    public void printType(){
+    public void printType() {
         System.out.println(body == null ? "Данных по транспортному средству недостаточно" : body.getBodyType());
     }
+
+    @Override
+    public void passDiagnostics() {
+        System.out.println("Диагностика легкового автомобиля");
+    }
+
 }

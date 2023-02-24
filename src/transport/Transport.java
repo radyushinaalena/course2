@@ -48,9 +48,11 @@ public abstract class Transport<T extends Driver> implements Competing {
 
     public abstract void stop();
 
-    public abstract void getType();
+    public abstract void conclusionType();
 
     public abstract void printType();
+
+    public abstract void passDiagnostics() throws TransportTypeException;
 
     @Override
     public String toString() {

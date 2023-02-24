@@ -26,6 +26,12 @@ public class Main {
         };
         for (Transport<?> i : transports) {
             System.out.println(i);
+            try {
+                i.passDiagnostics();
+            } catch (TransportTypeException e) {
+                System.out.println(e.getLocalizedMessage());
+            }
+
             System.out.println("водитель " + i.getDriver().getFullName() + " управляет автомобилем " + i.getBrand() + " и будет участвовать в заезде");
         }
     }
