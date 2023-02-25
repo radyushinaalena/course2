@@ -1,10 +1,12 @@
 package transport;
 
+import java.util.List;
+
 public class Bus extends Transport<CategoryD> {
     private CapacitySeats capacitySeats;
 
-    public Bus(String brand, String model, double engineVolume, CategoryD driver, CapacitySeats capacitySeats) {
-        super(brand, model, engineVolume, driver);
+    public Bus(String brand, String model, double engineVolume, CategoryD driver, CapacitySeats capacitySeats, List<Mechanic> mechanic) {
+        super(brand, model, engineVolume, driver, mechanic);
         this.capacitySeats = capacitySeats;
     }
 
@@ -96,5 +98,8 @@ public class Bus extends Transport<CategoryD> {
 
     }
 
-
+    @Override
+    public void spendTransportSTO() throws TransportTypeException {
+        throw new TransportTypeException("Автобус СТО проходить не должен");
+    }
 }

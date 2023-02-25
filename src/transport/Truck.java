@@ -1,9 +1,11 @@
 package transport;
 
+import java.util.List;
+
 public class Truck extends Transport<CategoryC> {
    private Capacity capacity;
-    public Truck(String brand, String model, double engineVolume, CategoryC driver, Capacity capacity) {
-        super(brand, model, engineVolume, driver);
+    public Truck(String brand, String model, double engineVolume, CategoryC driver, Capacity capacity, List<Mechanic> mechanic) {
+        super(brand, model, engineVolume, driver, mechanic);
         this.capacity = capacity;
     }
 
@@ -86,5 +88,10 @@ public class Truck extends Transport<CategoryC> {
     @Override
     public void passDiagnostics(){
         System.out.println("Диагностика грузового автомобиля");
+    }
+
+    @Override
+    public void spendTransportSTO() {
+        System.out.println("Автомобиль добавлен в очередь");
     }
 }

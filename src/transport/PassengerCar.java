@@ -1,11 +1,12 @@
 package transport;
 
+import java.util.List;
+
 public class PassengerCar extends Transport<CategoryB> {
     private Body body;
 
-
-    public PassengerCar(String brand, String model, double engineVolume, CategoryB driver, Body body) {
-        super(brand, model, engineVolume, driver);
+    public PassengerCar(String brand, String model, double engineVolume, CategoryB driver, Body body, List<Mechanic> mechanicList) {
+        super(brand, model, engineVolume, driver, mechanicList);
         this.body = body;
     }
 
@@ -89,5 +90,8 @@ public class PassengerCar extends Transport<CategoryB> {
     public void passDiagnostics() {
         System.out.println("Диагностика легкового автомобиля");
     }
-
-}
+    @Override
+    public void spendTransportSTO() {
+        System.out.println("Автомобиль добавлен в очередь");
+    }
+  }
