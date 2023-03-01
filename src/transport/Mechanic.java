@@ -1,8 +1,8 @@
 package transport;
 
 public class Mechanic {
-    String name;
-    String company;
+    private String name;
+    private String company;
 
     public Mechanic(String name, String company) {
         this.name = name;

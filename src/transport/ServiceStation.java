@@ -4,14 +4,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class ServiceStation {
-    public static Queue<String> queue = new LinkedList<>();
+    public Queue<Transport<?>> queue = new LinkedList<>();
 
-    public static void addCarToQueue(Transport<?> transport) throws TransportTypeException {
+    public void addCarToQueue(Transport<?> transport) throws TransportTypeException {
         transport.spendTransportSTO();
-        queue.offer(String.valueOf(transport));
+        queue.offer(transport);
     }
 
-    public static void spendTechnicalInspection() {
+    public void spendTechnicalInspection() {
         if (queue.peek() == null) {
             System.out.println("Очередь пустая");
         } else {
@@ -19,7 +19,7 @@ public class ServiceStation {
         }
     }
 
-    public static Queue<String> getQueue() {
+    public Queue<Transport<?>> getQueue() {
         return queue;
     }
 }
