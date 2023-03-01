@@ -1,10 +1,24 @@
 package transport;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
 public abstract class Transport<T extends Driver> implements Competing {
     private final String brand;
     private final String model;
     private final double engineVolume;
     private T driver;
+    private List<Mechanic> mechanicList;
+
+    public List<Mechanic> getMechanicList() {
+        return mechanicList;
+    }
+
+    public void setMechanicList(List<Mechanic> mechanicList) {
+        this.mechanicList = mechanicList;
+    }
 
     public String getBrand() {
         return brand;
@@ -26,7 +40,8 @@ public abstract class Transport<T extends Driver> implements Competing {
         this.driver = driver;
     }
 
-    public Transport(String brand, String model, double engineVolume, T driver) {
+    public Transport(String brand, String model, double engineVolume, T driver, List<Mechanic> mechanicList) {
+        this.mechanicList = mechanicList;
         if (model == null || model.isEmpty()) {
             model = "default";
         }
@@ -53,6 +68,8 @@ public abstract class Transport<T extends Driver> implements Competing {
     public abstract void printType();
 
     public abstract void passDiagnostics() throws TransportTypeException;
+
+    public abstract void spendTransportSTO() throws TransportTypeException;
 
     @Override
     public String toString() {
