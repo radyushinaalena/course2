@@ -62,18 +62,7 @@ public class Main {
         Transport<?>[] transportsClone = transports.clone();
         for (Transport<?> i : transportsClone) {
             Map<Transport<?>, List<Mechanic>> carAndMechanics = new HashMap<>();
-            if (i.getClass().getSimpleName().equals("PassengerCar")) {
-                carAndMechanics.put(i, mechanicListPassengerCar);
-
-            } else if
-            (i.getClass().getSimpleName().equals("Truck")) {
-                carAndMechanics.put(i, mechanicListTruck);
-
-            } else if
-            (i.getClass().getSimpleName().equals("Bus")) {
-                carAndMechanics.put(i, mechanicListBus);
-
-            }
+            carAndMechanics.put(i, i.getMechanicList());
             System.out.println(carAndMechanics);
 
         }
