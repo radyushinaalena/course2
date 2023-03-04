@@ -4,9 +4,9 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        CategoryB driver1 = new CategoryB("ААА", true, 5);
-        CategoryC driver2 = new CategoryC("БББ", true, 12);
-        CategoryD driver3 = new CategoryD("ВВВ", false, 10);
+        CategoryB driver1 = new CategoryB("Маша", true, 5);
+        CategoryC driver2 = new CategoryC("Даша", true, 12);
+        CategoryD driver3 = new CategoryD("Саша", false, 10);
         Mechanic mechanic1 = new Mechanic("Иван Иванов", "AAA");
         Mechanic mechanic2 = new Mechanic("Петр Петров", "БББ");
         Mechanic mechanic3 = new Mechanic("Семен Семенов", "ВВВ");
@@ -64,7 +64,18 @@ public class Main {
             Map<Transport<?>, List<Mechanic>> carAndMechanics = new HashMap<>();
             carAndMechanics.put(i, i.getMechanicList());
             System.out.println(carAndMechanics);
-
         }
+
+        Set<Driver> drivers = new HashSet<>();
+        drivers.add(driver1);
+        drivers.add(driver2);
+        drivers.add(driver3);
+
+        Iterator<Driver> iterDrivers = drivers.iterator();
+        while (iterDrivers.hasNext()) {
+            System.out.println(iterDrivers.next());
+        }
+
+
     }
 }
