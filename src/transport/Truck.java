@@ -3,7 +3,8 @@ package transport;
 import java.util.List;
 
 public class Truck extends Transport<CategoryC> {
-   private Capacity capacity;
+    private Capacity capacity;
+
     public Truck(String brand, String model, double engineVolume, CategoryC driver, Capacity capacity, List<Mechanic> mechanic) {
         super(brand, model, engineVolume, driver, mechanic);
         this.capacity = capacity;
@@ -43,14 +44,15 @@ public class Truck extends Transport<CategoryC> {
 
         @Override
         public String toString() {
-            return " грузоподъемность: " + (lowerBound==null?"":("от "+lowerBound)) +
-                    (upperBound==null?"":(" до "+upperBound));
+            return " грузоподъемность: " + (lowerBound == null ? "" : ("от " + lowerBound)) +
+                    (upperBound == null ? "" : (" до " + upperBound));
         }
     }
+
     @Override
     public String toString() {
         return "Марка: " + getBrand() + ", модель: " + getModel() + ", объем двигателя: " +
-                getEngineVolume() + " л" + " ,"+ capacity;
+                getEngineVolume() + " л" + " ," + capacity;
     }
 
     @Override
@@ -77,16 +79,19 @@ public class Truck extends Transport<CategoryC> {
     public void maxSpeed() {
         System.out.println("Максимальная скорость грузового автомобиля " + getBrand());
     }
+
     @Override
-    public void conclusionType(){
+    public void conclusionType() {
         System.out.println(Type.valueOf("TRUCK"));
     }
+
     @Override
-    public void printType(){
+    public void printType() {
         System.out.println(capacity == null ? "Данных по транспортному средству недостаточно" : capacity);
     }
+
     @Override
-    public void passDiagnostics(){
+    public void passDiagnostics() {
         System.out.println("Диагностика грузового автомобиля");
     }
 
