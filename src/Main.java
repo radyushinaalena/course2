@@ -4,9 +4,10 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        CategoryB driver1 = new CategoryB("Маша", true, 5);
-        CategoryC driver2 = new CategoryC("Даша", true, 12);
-        CategoryD driver3 = new CategoryD("Саша", false, 10);
+        CategoryB driver4 = new CategoryB("Маша М", true, 5);
+        CategoryB driver1 = new CategoryB("Маша М", true, 5);
+        CategoryC driver2 = new CategoryC("Даша Т", true, 12);
+        CategoryD driver3 = new CategoryD("Маша М", true, 5);
         Mechanic mechanic1 = new Mechanic("Иван Иванов", "AAA");
         Mechanic mechanic2 = new Mechanic("Петр Петров", "БББ");
         Mechanic mechanic3 = new Mechanic("Семен Семенов", "ВВВ");
@@ -70,6 +71,7 @@ public class Main {
         drivers.add(driver1);
         drivers.add(driver2);
         drivers.add(driver3);
+        drivers.add(driver4);
 
         Iterator<Driver> iterDrivers = drivers.iterator();
         while (iterDrivers.hasNext()) {
