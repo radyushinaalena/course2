@@ -1,8 +1,6 @@
 import transport.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -40,11 +38,13 @@ public class Main {
                 new Bus("Hyundai", "H350", 3.2, driver3, Bus.CapacitySeats.BIG, mechanicListBus),
                 new Bus("ПАЗ", "3206", 4.6, driver3, Bus.CapacitySeats.PARTICULAR_BIG, mechanicListBus)
         };
-
+        ServiceStation serviceStation = new ServiceStation();
         for (Transport<?> i : transports) {
             System.out.println(i);
             try {
-                ServiceStation.addCarToQueue(i);
+
+                serviceStation.addCarToQueue(i);
+
                 i.passDiagnostics();
             } catch (TransportTypeException e) {
                 System.out.println(e.getLocalizedMessage());
@@ -54,8 +54,17 @@ public class Main {
 
         }
         List<Transport<?>> transportList = new ArrayList<>(Arrays.asList(transports));
-        System.out.println("Очередь на СТО: " + ServiceStation.getQueue());
-        ServiceStation.spendTechnicalInspection();
-        System.out.println("Очередь на СТО: " + ServiceStation.getQueue());
+        System.out.println("Очередь на СТО: " + serviceStation.getQueue());
+        serviceStation.spendTechnicalInspection();
+        System.out.println("Очередь на СТО: " + serviceStation.getQueue());
+
+
+        Transport<?>[] transportsClone = transports.clone();
+        for (Transport<?> i : transportsClone) {
+            Map<Transport<?>, List<Mechanic>> carAndMechanics = new HashMap<>();
+            carAndMechanics.put(i, i.getMechanicList());
+            System.out.println(carAndMechanics);
+
+        }
     }
 }
